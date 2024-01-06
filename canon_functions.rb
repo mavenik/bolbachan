@@ -8,6 +8,7 @@ def get_options melody, options
   options[:start] ||= 0
   options[:length] ||= melody.length
   options[:amp] ||= 1
+  options[:synth] ||= :kalimba
   
   validate_options melody, options
   
@@ -35,7 +36,7 @@ define :play_melody do | base_melody, options |
   # Main melody
   live_loop :pakad do
     base_melody.length.times do
-      use_synth :kalimba
+      use_synth options[:synth]
       play base_melody.tick, amp: options[:amp]
       sleep options[:interval_length]
     end
@@ -52,7 +53,7 @@ define :play_canon do | base_melody, options |
   # Canon
   live_loop :canon, delay: options[:intro]*options[:interval_length] do
     base_melody.length.times do
-      use_synth :kalimba
+      use_synth options[:synth]
       play canon_melody.tick, amp: options[:amp]
       sleep options[:interval_length]
     end
@@ -67,7 +68,7 @@ define :play_crab_canon do | base_melody, options |
   play_melody base_melody, options
   live_loop :crabcanon, delay: options[:intro]*options[:interval_length] do
     base_melody.length.times do
-      use_synth :kalimba
+      use_synth options[:synth]
       play reverse_melody.tick, amp: options[:amp]
       sleep options[:interval_length]
     end
