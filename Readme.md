@@ -45,6 +45,7 @@ Implement a Mobius canon using geometric glide reflection.
 Probable approach:
 
 1. Represent a melody as a balanced binary search tree
+
 [](https://upload.wikimedia.org/wikipedia/commons/a/a9/Unbalanced_binary_tree.svg)
 
 2. Perform tree manipulations to achieve a glide reflection in a 2d Cartesian space
